@@ -13,38 +13,32 @@
             padding: 0;
         }
 
-        header {
-            background-color: #fff;
-            padding: 10px;
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .image-container {
+            margin: 20px;
             text-align: center;
-            border-bottom: 1px solid #ccc;
         }
 
-        input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            margin: 20px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
         }
 
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .image-text {
+            margin-top: 10px;
         }
 
-        #searchResults {
-            padding: 20px;
-            margin: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        .image-link {
+            display: block;
+            margin-top: 5px;
+            color: #007bff;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -54,30 +48,24 @@
         <img src="logo.png" alt="Company Logo">
     </header>
 
-    <input type="text" id="searchInput" placeholder="Type a company name...">
-    <button onclick="searchCompany()">Search</button>
+    <section>
+        <div class="image-container">
+            <img src="image1.jpg" alt="Image 1">
+            <div class="image-text">
+                <p>Information about Image 1</p>
+                <a class="image-link" href="#">Learn More</a>
+            </div>
+        </div>
 
-    <div id="searchResults"></div>
+        <div class="image-container">
+            <img src="image2.jpg" alt="Image 2">
+            <div class="image-text">
+                <p>Information about Image 2</p>
+                <a class="image-link" href="#">Learn More</a>
+            </div>
+        </div>
 
-    <script>
-        async function searchCompany() {
-            const searchQuery = document.getElementById("searchInput").value;
-
-            const response = await fetch(`https://api.opencorporates.com/v0.4/companies/search?q=${searchQuery}`);
-            const data = await response.json();
-
-            const companyData = data.results.companies[0];
-
-            const resultElement = document.getElementById("searchResults");
-            resultElement.innerHTML = `
-                <h2>${companyData.name}</h2>
-                <p><strong>Company Number:</strong> ${companyData.company_number}</p>
-                <p><strong>Industry:</strong> ${companyData.industry_codes[0].description}</p>
-                <p><strong>Status:</strong> ${companyData.current_status}</p>
-                <p><strong>Address:</strong> ${companyData.registered_address.in_full}</p>
-                <p><strong>Website:</strong> <a href="${companyData.opencorporates_url}" target="_blank">${companyData.opencorporates_url}</a></p>
-            `;
-        }
-    </script>
+        <!-- Add more image containers as needed for images 3 to 10 -->
+    </section>
 </body>
 </html>
